@@ -1,0 +1,79 @@
+﻿@model List<BookModel>
+
+<div class="row">
+    <div class="col-lg-7 mx-auto">
+        <div class="card border-0 shadow">
+            <div class="card-body p-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <!-- Search Form -->
+                    <form action="PLACEHOLDER_SEARCH_ACTION" method="get" class="form-inline my-2 my-lg-0 d-flex">
+                        <input class="form-control mr-sm-1 m-auto h-25" type="search" name="SearchString"
+                               placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success mx-1 my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                    <!-- Add New Product Button -->
+                    <a asp-controller="Book" asp-action="Upsert" class="btn btn-dark" type="button" data-toggle="tooltip" data-placement="top" title="Add New Product">
+                        Add New Product
+                    </a>
+                </div>
+
+                <!-- Responsive Table -->
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered m-0">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th class="text-center">
+                                    Title
+                                    <a><i class="fa fa-sort"></i></a>
+                                </th>
+                                <th class="text-center">ISBN</th>
+                                <th class="text-center">Author</th>
+                                <th class="text-center">List Price</th>
+                                <th class="text-center">Category</th>
+                                <th class="text-center">Image</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Example Row, Loop through items as needed -->
+                            @foreach(var obj in Model)
+                            {
+                                <tr>
+                                    <td class="text-center">@obj.Title</td>
+                                    <td class="text-center">@obj.ISBN</td>
+                                    <td class="text-center">@obj.Author</td>
+                                    <td class="text-center">@obj.ListPrice</td>
+                                    <td class="text-center">@obj.Category.Name</td>
+                                    <td class="text-center">
+                                        <img src="@(string.IsNullOrEmpty(obj.ImageUrl)?"/Image/Book/noImage.jpg":obj.ImageUrl)" alt="Product Image" class="mx-auto d-block" style="width: 50px; height: 50px;" />
+                                    </td>
+                                    <td class="text-center">
+                                        <ul class="list-inline m-0 d-flex">
+                                            <li class="list-inline-item">
+                                                <a asp-controller="Book" asp-action="Upsert" asp-route-id="@obj.Id" class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a asp-controller="Book" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tooltip and Validation Scripts -->
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>

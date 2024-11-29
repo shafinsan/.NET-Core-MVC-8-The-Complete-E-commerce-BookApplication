@@ -1,0 +1,120 @@
+﻿@model List<CategoryModel>
+<div class="row">
+    <div class="col-lg-7 mx-auto">
+        <div class="card border-0 shadow">
+            <div class="card-body p-5">
+                <div class="container d-flex justify-content-between align-items-center mb-3">
+                    <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-dark">Back</a>
+                    <a asp-area="Admin" asp-controller="Category" asp-action="Upsert" class="btn btn-primary btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Add">
+                        <i class="fa fa-plus"></i> Add
+                    </a>
+                </div>
+
+                <form method="get" class="form-inline my-2 my-lg-0 d-flex mb-4">
+                    <input class="form-control mr-sm-1 m-auto h-25 w-75" type="search" name="SearchString" id="searchInput"
+                           placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success mx-1 my-2 my-sm-0" type="submit">Search</button>
+                </form>
+
+                <!-- Responsive table -->
+                <div class="table-responsive">
+                    <table class="table m-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Number</th>
+                                <th scope="col" class="d-flex">Name
+                                    <div class="item">
+                                        @{
+                                            if (ViewData["sort"] == "asc")
+                                            {
+                                                <a asp-controller="Category" asp-action="Index" asp-route-sort="@ViewData["sort"]"
+                                                   asp-route-SearchString="@ViewContext.HttpContext.Request.Query["SearchString"]"
+                                                   asp-route-pageNumber="@(ViewData["pageNumber"] ?? 1)"
+                                                   asp-route-pageSize="5">
+
+                                                <i style="color:green" class="fa fa-sort-down sort-icon"></i></a>
+                                            }
+                                            if (ViewData["sort"] == "dsc")
+                                            {
+                                                <a asp-controller="Category" asp-action="Index" asp-route-sort="@ViewData["sort"]"
+                                                   asp-route-SearchString="@ViewContext.HttpContext.Request.Query["SearchString"]"
+                                                   asp-route-pageNumber="@(ViewData["pageNumber"] ?? 1)"
+                                                   asp-route-pageSize="5">
+                                                <i style="color:green" class="fa fa-sort-up sort-icon"></i></a>
+                                            }
+                                        }
+                                        
+                                        
+                                    </div>
+                                </th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="categoryTableBody">
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                <tr>
+                                    <th scope="row">@(((int)ViewData["pageNumber"]-1)*5 + (i + 1))</th>
+                                    <td>@Model[i].Name</td>
+                                    <td>
+                                        <ul class="list-inline m-0">
+                                            <li class="list-inline-item">
+                                                <a asp-area="Admin" asp-controller="Category" asp-action="Upsert" asp-route-id="@Model[i].Id" class="btn btn-success btn-sm rounded-0" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a asp-area="Admin" asp-controller="Category" asp-action="Delete" asp-route-id="@Model[i].Id" class="btn btn-danger btn-sm rounded-0" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                       
+                    </table>
+                    <div class="d-flex justify-content-center mt-3">
+                        <nav>
+                            <ul class="pagination">
+                                @if ((int)ViewData["pageNumber"] > 1)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" asp-action="Index" asp-route-pageNumber="@( (int)ViewData["pageNumber"] - 1 )" asp-route-pageSize="5">Previous</a>
+                                    </li>
+                                }
+                                @for (int i = 1; i <= (int)ViewData["totalPage"]; i++)
+                                {
+                                    <li class="page-item @((int)ViewData["pageNumber"]==i?"active":"")">
+                                        <a class="page-link" asp-action="Index" asp-route-pageNumber="@i" asp-route-pageSize="2">@i</a>
+                                    </li>
+                                }
+                                @if ((int)ViewData["pageNumber"] < (int)ViewData["totalPage"])
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" asp-action="Index" asp-route-pageNumber="@( (int)ViewData["pageNumber"] + 1 )" asp-route-pageSize="5">Next</a>
+                                    </li>
+                                }
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+}

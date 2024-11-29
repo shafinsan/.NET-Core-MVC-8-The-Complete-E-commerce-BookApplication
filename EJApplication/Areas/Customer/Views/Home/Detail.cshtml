@@ -1,0 +1,70 @@
+﻿@model ShopingCartModel
+
+<form method="post">
+    <input asp-for="@Model.BookId" hidden/>
+    <div class="card shadow border-0 mt-4">
+        <div class="card-header bg-secondary bg-gradient text-light py-4">
+            <div class="text-center">
+                <h3 class="text-white text-uppercase">@Model.Book.Title</h3>
+                <p class="text-white-50 fw-semibold mb-0">@Model.Book.Author</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <!-- Back to Home Button -->
+                <div class="col-12 col-md-2 mb-3">
+                    <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-outline-primary bg-gradient fw-semibold btn-sm text-uppercase">
+                        Back to Home
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Book Image -->
+                <div class="col-12 col-lg-3 text-center mb-3">
+                    <img src="@Model.Book.ImageUrl" alt="Book Image" class="rounded img-fluid" />
+                </div>
+                <div class="col-12 col-lg-9">
+                    <!-- Book Details -->
+                    <div class="mb-3">
+                        <span class="badge bg-primary">@Model.Book.Category.Name</span>
+                    </div>
+                    <p class="text-muted">ISBN: @Model.Book.ISBN</p>
+                    <p class="text-muted">
+                        List Price: <span class="text-decoration-line-through">@Model.Book.ListPrice</span>
+                    </p>
+
+                    <!-- Price Table -->
+                    <div class="row text-center">
+                        <div class="col-3 col-lg-2 border-bottom py-2">Price</div>
+                        <div class="col-3 col-lg-2 border-bottom py-2">1-50</div>
+                        <div class="col-3 col-lg-2 border-bottom py-2">51-100</div>
+                        <div class="col-3 col-lg-2 border-bottom py-2">100+</div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-3 col-lg-2 py-2 text-warning fw-bold">@Model.Book.ListPrice</div>
+                        <div class="col-3 col-lg-2 py-2 text-warning fw-bold">@Model.Book.Price</div>
+                        <div class="col-3 col-lg-2 py-2 text-warning fw-bold">@Model.Book.Price50</div>
+                        <div class="col-3 col-lg-2 py-2 text-warning fw-bold">@Model.Book.Price100</div>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="text-secondary lh-sm mt-3">
+                        @Model.Book.Description
+                    </p>
+
+                    <!-- Count Input -->
+                    <div class="input-group mb-3">
+                        <span class="input-group-text bg-primary text-white border-0">Count</span>
+                        <input asp-for="@Model.Count" class="form-control text-end" min="1" max="100" value="1" />
+                        <span asp-validation-for="@Model.Count"></span>
+                    </div>
+
+                    <!-- Add to Cart Button -->
+                    <button type="submit" class="btn btn-primary bg-gradient w-100 text-uppercase fw-semibold">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

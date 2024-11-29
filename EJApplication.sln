@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35303.130
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EJApplication", "EJApplication\EJApplication.csproj", "{67A84633-A9B1-4B73-8A38-B850423F3554}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EJApplication.DataAccessLayer", "EJApplication.DataAccessLayer\EJApplication.DataAccessLayer.csproj", "{5B0B4472-25EC-40EC-AF99-F3A97DC48D0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EJApplication.ModelsLayer", "EJApplication.ModelsLayer\EJApplication.ModelsLayer.csproj", "{01B48B45-E092-44FA-95F7-BBE501BE27A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67A84633-A9B1-4B73-8A38-B850423F3554}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67A84633-A9B1-4B73-8A38-B850423F3554}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67A84633-A9B1-4B73-8A38-B850423F3554}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67A84633-A9B1-4B73-8A38-B850423F3554}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B0B4472-25EC-40EC-AF99-F3A97DC48D0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B0B4472-25EC-40EC-AF99-F3A97DC48D0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B0B4472-25EC-40EC-AF99-F3A97DC48D0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B0B4472-25EC-40EC-AF99-F3A97DC48D0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01B48B45-E092-44FA-95F7-BBE501BE27A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01B48B45-E092-44FA-95F7-BBE501BE27A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01B48B45-E092-44FA-95F7-BBE501BE27A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01B48B45-E092-44FA-95F7-BBE501BE27A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2A7CE6E8-13E2-4BFF-9E01-5ECCCC2F193B}
+	EndGlobalSection
+EndGlobal

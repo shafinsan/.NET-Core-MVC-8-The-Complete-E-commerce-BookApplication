@@ -1,0 +1,102 @@
+﻿@model BookCategoryWrapper
+<div class="row">
+    <div class="col-12">
+        <!-- Display Image Section -->
+        @if (Model.BookWrapper.Id != 0 || Model.BookWrapper.Id!=null)
+        {
+            <div class="col-4 m-auto">
+                <img src="@(string.IsNullOrEmpty(Model.BookWrapper.ImageUrl)?"/Image/Book/noImage.jpg":Model.BookWrapper.ImageUrl)"
+                width="100%" style="border:2px solid black" alt="Product Image" />
+            </div>
+        }
+        
+
+        <!-- Form Start -->
+        <form method="post" enctype="multipart/form-data">
+            <!-- Hidden Fields for ID and Image URL -->
+            <input type="hidden" asp-for="@Model.BookWrapper.Id" />
+            <input type="hidden" asp-for="@Model.BookWrapper.ImageUrl"/>;
+            @if (Model.BookWrapper.Id != 0)
+            {
+                <input type="hidden" asp-for="@Model.BookWrapper.ImageUrl" value="PLACEHOLDER_IMAGE_URL" />
+            }
+            <!-- Title -->
+            <div class="form-group">
+                <label asp-for="@Model.BookWrapper.Title" class="control-label">Title</label>
+                <input asp-for="@Model.BookWrapper.Title" class="form-control"/>
+                <span asp-validation-for="@Model.BookWrapper.Title" class="text-danger"></span>
+            
+            </div>
+
+            <!-- ISBN -->
+            <div class="form-group">
+                <label asp-for="@Model.BookWrapper.ISBN" class="control-label">ISBN</label>
+                <input asp-for="@Model.BookWrapper.ISBN" class="form-control" />
+                <span asp-validation-for="@Model.BookWrapper.ISBN" class="text-danger"></span>
+            </div>
+
+            <!-- Description -->
+            <div class="form-group">
+                <label asp-for="@Model.BookWrapper.Description" class="control-label">Description</label>
+                <textarea asp-for="@Model.BookWrapper.Description" class="form-control"></textarea>
+                <span asp-validation-for="@Model.BookWrapper.Description" class="text-danger"></span>
+            </div>
+
+            <!-- Author -->
+            <div class="form-group">
+                <label asp-for="@Model.BookWrapper.Author" class="control-label">Author</label>
+                <input asp-for="@Model.BookWrapper.Author" class="form-control"/>
+                <span asp-validation-for="@Model.BookWrapper.Author" class="text-danger"></span>
+            </div>
+
+            <!-- List Price -->
+            <div class="form-group">
+                <label asp-for="@Model.BookWrapper.ListPrice" class="control-label">List Price</label>
+                <input asp-for="@Model.BookWrapper.ListPrice" class="form-control" />
+                <span asp-validation-for="@Model.BookWrapper.ListPrice" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="@Model.BookWrapper.Price" class="control-label">Price</label>
+                <input asp-for="@Model.BookWrapper.Price" class="form-control" />
+                <span asp-validation-for="@Model.BookWrapper.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.BookWrapper.Price50" class="control-label">Price50</label>
+                <input asp-for="@Model.BookWrapper.Price50" class="form-control" />
+                <span asp-validation-for="@Model.BookWrapper.Price50" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.BookWrapper.Price100" class="control-label">Price100</label>
+                <input asp-for="@Model.BookWrapper.Price100" class="form-control" />
+                <span asp-validation-for="@Model.BookWrapper.Price100" class="text-danger"></span>
+            </div>
+
+            <!-- Category Selection -->
+            <div class="form-group">
+                <label asp-for="@Model.BookWrapper.CategoryId" class="control-label">Category</label>
+                <select asp-for="@Model.BookWrapper.CategoryId" asp-items="@Model.CategoryList" class="form-control">
+                    <option selected disabled>--Select Category--</option>
+                </select>
+            </div>
+
+            <!-- Image Upload -->
+            <div class="form-group">
+                <label class="control-label">Image</label>
+                <input type="file" class="form-control" name="file" accept="image/*" />
+            </div>
+
+            <!-- Submit and Back Buttons -->
+            <div class="form-group my-2">
+                <button type="submit" class="btn btn-primary btn-sm mx-1">@(Model.BookWrapper.Id==0?"Save Changes":"Update")</button>
+                <a asp-controller="Book" asp-action="Index" class="btn btn-dark btn-sm mx-1">Back</a>
+            </div>
+        </form>
+        <!-- Form End -->
+    </div>
+</div>
+
+<!-- Scripts for Validation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>

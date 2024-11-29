@@ -1,0 +1,78 @@
+﻿@model CompanyModel
+
+<div class="row">
+    <div class="col-12">
+        <form asp-area="Admin" asp-controller="Company" asp-action="Upsert" method="post">
+
+            <!-- Hidden Field for ID -->
+            <input asp-for="@Model.Id" hidden />
+
+            <div class="form-group">
+                <label asp-for="@Model.CompanyName" class="control-label"></label>
+                <input asp-for="@Model.CompanyName" class="form-control" required />
+                <span class="text-danger" asp-validation-for="@Model.CompanyName"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.Email" class="control-label"></label>
+                <input asp-for="@Model.Email" class="form-control" required />
+                <span class="text-danger" asp-validation-for="@Model.Email"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.PhoneNumber" class="control-label"></label>
+                <input asp-for="@Model.PhoneNumber" class="form-control" required />
+                <span class="text-danger" asp-validation-for="@Model.PhoneNumber"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.PresentAddress" class="control-label"></label>
+                <input asp-for="@Model.PresentAddress" class="form-control" required />
+                <span class="text-danger" asp-validation-for="@Model.PresentAddress"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.ParmanentAddress" class="control-label"></label>
+                <input asp-for="@Model.ParmanentAddress" class="form-control" required />
+                <span class="text-danger" asp-validation-for="@Model.ParmanentAddress"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.PostalCode" class="control-label"></label>
+                <input asp-for="@Model.PostalCode" class="form-control" required />
+                <span class="text-danger" asp-validation-for="@Model.PostalCode"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.EstablishedDate" class="control-label"></label>
+                <input asp-for="@Model.EstablishedDate" class="form-control" required />
+                <span class="text-danger" asp-validation-for="@Model.EstablishedDate"></span>
+            </div>
+
+
+            <div class="form-group">
+                 <label asp-for="@Model.Password"></label>
+                 <input asp-for="@Model.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <span asp-validation-for="@Model.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.ConfirmPassword">Confirm Password</label>
+                <input asp-for="@Model.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+               
+                <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <!-- Submit and Back Buttons -->
+            <div class="form-group my-2">
+                <button type="submit" class="btn btn-primary btn-sm mx-1">
+                    @(Model.Id == 0 || Model.Id == null ? "Save" : "Save Changes")
+                </button>
+                <a asp-area="Admin" asp-controller="Company" asp-action="Index" class="btn btn-dark btn-sm mx-1">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

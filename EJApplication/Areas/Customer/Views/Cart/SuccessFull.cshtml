@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Payment Success";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white text-center">
+                    <h3>Payment Successful</h3>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-success" role="alert">
+                        <h4 class="alert-heading">Congratulations!</h4>
+                        <p>Your payment has been successfully processed.</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5>Account Information:</h5>
+                        <p><strong>Account ID:</strong> @ViewBag.AccountId</p>
+                        <p><strong>Total Amount:</strong> $@ViewBag.NetTotal</p>
+                    </div>
+
+                    <div class="text-center">
+                        <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-primary">Go to Dashboard</a>
+                        <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="btn btn-secondary">Back to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

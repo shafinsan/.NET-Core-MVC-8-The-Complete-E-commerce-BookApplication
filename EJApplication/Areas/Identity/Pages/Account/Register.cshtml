@@ -1,0 +1,130 @@
+﻿@page
+@using EJApplication.ModelsLayer.Utility
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h2>Create a new account.</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+           
+           @*start of application user *@
+           
+            <div id="MyName" class="form-floating mb-3 ">
+                <input  id="nameId" asp-for="@Model.Input.Name" class="form-control" autocomplete="username" placeholder="name@example.com" />
+                <label asp-for="@Model.Input.Name">Name</label>
+                <span id="nameError" class="text-danger" style="display: none;"></span>
+            </div>
+
+            <div id="MyCompanyName" class="form-floating mb-3">
+                <input id="comanyId" asp-for="@Model.Input.CompanyName" class="form-control" autocomplete="username" placeholder="name@example.com" />
+                <label asp-for="@Model.Input.CompanyName">CompanyName</label>
+                <span id="companyError" class="text-danger" style="display: none;"></span>
+            </div>
+            
+           
+
+
+
+           @*end of application user *@
+
+
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <label asp-for="Input.Email">Email</label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+
+           @*  This is for admin *@
+            @*Start of Company*@
+            <div id="Company_Employee">
+                <div class="form-floating mb-3">
+                    <input id="phoneId" asp-for="@Model.Input.PhoneNumber" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                    <label asp-for="@Model.Input.PhoneNumber">Phone Number</label>
+                    <span id="errorPhone" class="text-danger" style="display: none;"></span>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input id="presentAddressId" asp-for="@Model.Input.PresentAddress" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                    <label asp-for="@Model.Input.PresentAddress">Present Address</label>
+                    <span id="errorPresentAddress" class="text-danger" style="display: none;"></span>
+                </div>
+
+
+                <div class="form-floating mb-3">
+                    <input id="parmanentAddressId" asp-for="@Model.Input.ParmanentAddress" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                    <label asp-for="@Model.Input.ParmanentAddress">Parmanent Address</label>
+                    <span id="errorParmanetAddress" class="text-danger" style="display: none;"></span>
+                </div>
+
+
+                <div class="form-floating mb-3">
+                    <input id="zipId" asp-for="@Model.Input.ZipCode" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                    <label asp-for="@Model.Input.ZipCode">ZIP Code</label>
+                    <span id="errorZIP" class="text-danger" style="display: none;"></span>
+                </div>
+
+            </div>
+            
+
+
+            <div id="establish_div" class="form-floating mb-3">
+                <input id="establishId" asp-for="@Model.Input.EstablishDate" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <label asp-for="@Model.Input.EstablishDate">Establish Date</label>
+                <span id="errorEstablishDate" class="text-danger" style="display: none;"></span>
+            </div>
+
+
+            <div id="joing_div" class="form-floating mb-3">
+                <input id="joingId" asp-for="@Model.Input.JoingDate" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <label asp-for="@Model.Input.JoingDate">Joing Date</label>
+                <span id="errorJoingDate" class="text-danger" style="display: none;"></span>
+              
+            </div>
+
+            @*End of Company*@
+
+            @if (User.IsInRole(StaticDetails.admin))
+            {
+                <select id="RoleSelect" asp-for="@Model.Input.Role" asp-items="@Model.Input.RoleList" class="form-control mb-3 pt-3 pb-3" autocomplete="username" aria-required="true" placeholder="name@example.com">
+                    <option selected disabled>---Select Role---</option>
+                </select>
+            }
+            @* End of admin *@
+
+           
+
+
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <label asp-for="Input.Password">Password</label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+        </form>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h3>Use another service to register.</h3>
+            <hr />
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/Registration Validation/RegistrationValidation.js"></script>
+}
